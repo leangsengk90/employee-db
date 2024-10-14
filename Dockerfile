@@ -7,6 +7,7 @@ ENV MONGO_INITDB_ROOT_PASSWORD=securepassword123
 
 # Optional: Add custom MongoDB configuration
 COPY mongod.conf /etc/mongod.conf
+COPY mongodb-keyfile /data/mongodb-keyfile
 
 # Expose MongoDB default port (27017)
 EXPOSE 27017
