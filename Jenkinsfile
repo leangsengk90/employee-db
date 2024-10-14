@@ -10,6 +10,7 @@ pipeline {
     stage("Deploy"){
       steps {
         sh """ 
+            docker rm -f employee-db || true
             docker run -d \
               -p 27017:27017 \
               --name employee-db \
