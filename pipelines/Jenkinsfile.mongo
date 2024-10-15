@@ -16,7 +16,7 @@ pipeline {
               --name employee-db \
               -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
               -e MONGO_INITDB_ROOT_PASSWORD=securepassword123 \
-              -v /data/db:/data/db \
+              -v /data/mongo:/data/db \
               employee-db
         """
       }
