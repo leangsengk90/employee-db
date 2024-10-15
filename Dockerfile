@@ -6,7 +6,7 @@ ENV MONGO_INITDB_ROOT_USERNAME=mongoadmin
 ENV MONGO_INITDB_ROOT_PASSWORD=securepassword123
 
 # Optional: Add custom MongoDB configuration
-COPY mongod.conf /etc/mongod.conf
+COPY mongod.conf /etc/mongod.conf.orig
 COPY mongodb-keyfile /data/mongodb-keyfile
 RUN chmod 600 /data/mongodb-keyfile
 RUN chown mongodb:mongodb /data/mongodb-keyfile
@@ -19,4 +19,4 @@ EXPOSE 27017
 COPY ./init-scripts/ /docker-entrypoint-initdb.d/
 
 # Command to start MongoDB with the specified configuration file
-CMD ["mongod", "--config", "/etc/mongod.conf"]
+CMD ["mongod", "--config", "/etc/mongod.conf.orig"]
