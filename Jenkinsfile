@@ -12,7 +12,7 @@ pipeline {
         sh """ 
             docker rm -f employee-db || true
             docker run -d \
-              -p 27017:27017 \
+              --network host \
               --name employee-db \
               -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
               -e MONGO_INITDB_ROOT_PASSWORD=securepassword123 \
