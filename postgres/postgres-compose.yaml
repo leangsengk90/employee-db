@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:16.4
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "employee"
+      POSTGRES_PASSWORD: "123"
+      POSTGRES_DATABASE: "employee"
+    volumes:
+      - /data/postgres:/var/lib/postgresql/data
+    network:
+      - postgres-net     
+  pgadmin:
+    depends_on:
+      - postgres
+    image: dpage/pgadmin4:8.12
+    container_name: pgadmin4
+    restart: always
+    ports:
+      - "8181:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "123"
+    deploy:
+    resources:
+      limits:
+        cpus: '1'
+        memory: '2g'
+      reservations:
+        cpus: '0.5'
+        memory: '512m'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    network:
+      - postgres-net 
+volumes:
+  pgadmin:
+network:
+  postgres-net:
